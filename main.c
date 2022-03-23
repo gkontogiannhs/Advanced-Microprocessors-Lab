@@ -21,7 +21,7 @@ int main(void)
 	PORTD.DIR |= PIN0_bm;
 	PORTD.OUT |= PIN0_bm;
 	
-	// PIN1 --> small road --> initially off
+	/// PIN1 --> small road --> initially off
 	PORTD.DIR |= PIN1_bm;
 	PORTD.OUT |= PIN1_bm;
 	
