@@ -14,8 +14,7 @@ int interr_p = 0;
 
 int main(void)
 {
-    int rn = 0;
-	int flag = 0;
+	int rn = 0;
 	
 	// PIN0 --> pedestrians --> initially off
 	PORTD.DIR |= PIN0_bm;
@@ -30,7 +29,7 @@ int main(void)
 	PORTD.OUTCLR = PIN2_bm;
 	
 	//enable flag interrupts
-	PORTF.PIN5CTRL |= PORT_PULLUPEN_bm | PORT_ISC_BOTHEDGES_gc; 
+	PORTF.PIN5CTRL |= PORT_PULLUPEN_bm | PORT_ISC_BOTHEDGES_gc;
 	
 	// initialize timer
 	TCA0.SINGLE.CNT = 0;
@@ -39,35 +38,42 @@ int main(void)
 	TCA0.SINGLE.CMP0 = ped;
 	TCA0.SINGLE.CTRLA = TCA_SINGLE_CLKSEL_DIV1024_gc;
 
-	while(1) 
-    {
+	while(1)
+	{
 		// check for flag interr
 		sei();
 		// while no pedestrians
 		while(!interr_f)
 		{
 			rn = rand() % 10;
-			// if car traced 
+			// if car traced
 			if(rn == 0 || rn == 5 || rn == 8)
 			{
 				
-				// set flag
-				flag = 1;
-			
 				// turn red big road
 				PORTD.OUT |= PIN2_bm;
-			
+				
 				// wait some time before small road turns green
 				_delay_ms(del_min);
-			
+				
 				// turn green small road
-				PORTD.OUTCLR = PIN1_bm;	 
-			}
-			
-			// turn it back green if it was set red
-			if(flag)
-			{
+				PORTD.OUTCLR = PIN1_bm;
+				
+				//  turn green for pedestrians
+				PORTD.OUTCLR = PIN0_bm;
+				
+				// check for more cars
+				while(rn == 0 || rn == 5 || rn == 8)
+				{
+					// do nothing and keep lights the way they were
+					rn = rand() % 10;
+				}
+				
+				// once cars stop coming 
+				// red for pedestrians and small road
+				PORTD.OUT |= PIN0_bm;
 				PORTD.OUT |= PIN1_bm;
+				// green for big
 				PORTD.OUTCLR = PIN2_bm;
 			}
 		}
@@ -93,6 +99,7 @@ int main(void)
 		
 		// zero flag timer
 		interr_p = 0;
+		
 		// red for pedestrians
 		PORTD.OUT |= PIN0_bm;
 		
@@ -102,12 +109,12 @@ int main(void)
 		// red for small road
 		PORTD.OUT |= PIN1_bm;
 		
-		// turn back red for big
+		// turn back green for big
 		PORTD.OUTCLR = PIN2_bm;
 		
 		// empty counter
 		TCA0.SINGLE.CNT = 0;
-    }
+	}
 	cli();
 }
 
