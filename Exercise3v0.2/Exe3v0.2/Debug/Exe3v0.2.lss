@@ -1,0 +1,523 @@
+
+Exe3v0.2.elf:     file format elf32-avr
+
+Sections:
+Idx Name          Size      VMA       LMA       File off  Algn
+  0 .data         00000002  00802800  000002fe  00000392  2**0
+                  CONTENTS, ALLOC, LOAD, DATA
+  1 .text         000002fe  00000000  00000000  00000094  2**1
+                  CONTENTS, ALLOC, LOAD, READONLY, CODE
+  2 .bss          00000004  00802802  00802802  00000394  2**0
+                  ALLOC
+  3 .comment      00000030  00000000  00000000  00000394  2**0
+                  CONTENTS, READONLY
+  4 .note.gnu.avr.deviceinfo 00000040  00000000  00000000  000003c4  2**2
+                  CONTENTS, READONLY
+  5 .debug_aranges 00000050  00000000  00000000  00000404  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  6 .debug_info   00002af9  00000000  00000000  00000454  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  7 .debug_abbrev 00002309  00000000  00000000  00002f4d  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  8 .debug_line   000004b6  00000000  00000000  00005256  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  9 .debug_frame  000000e8  00000000  00000000  0000570c  2**2
+                  CONTENTS, READONLY, DEBUGGING
+ 10 .debug_str    000015bf  00000000  00000000  000057f4  2**0
+                  CONTENTS, READONLY, DEBUGGING
+ 11 .debug_loc    000001ce  00000000  00000000  00006db3  2**0
+                  CONTENTS, READONLY, DEBUGGING
+ 12 .debug_ranges 00000040  00000000  00000000  00006f81  2**0
+                  CONTENTS, READONLY, DEBUGGING
+
+Disassembly of section .text:
+
+00000000 <__vectors>:
+   0:	0c 94 48 00 	jmp	0x90	; 0x90 <__ctors_end>
+   4:	0c 94 65 00 	jmp	0xca	; 0xca <__bad_interrupt>
+   8:	0c 94 65 00 	jmp	0xca	; 0xca <__bad_interrupt>
+   c:	0c 94 65 00 	jmp	0xca	; 0xca <__bad_interrupt>
+  10:	0c 94 65 00 	jmp	0xca	; 0xca <__bad_interrupt>
+  14:	0c 94 65 00 	jmp	0xca	; 0xca <__bad_interrupt>
+  18:	0c 94 65 00 	jmp	0xca	; 0xca <__bad_interrupt>
+  1c:	0c 94 65 00 	jmp	0xca	; 0xca <__bad_interrupt>
+  20:	0c 94 65 00 	jmp	0xca	; 0xca <__bad_interrupt>
+  24:	0c 94 65 00 	jmp	0xca	; 0xca <__bad_interrupt>
+  28:	0c 94 65 00 	jmp	0xca	; 0xca <__bad_interrupt>
+  2c:	0c 94 65 00 	jmp	0xca	; 0xca <__bad_interrupt>
+  30:	0c 94 e6 00 	jmp	0x1cc	; 0x1cc <__vector_12>
+  34:	0c 94 65 00 	jmp	0xca	; 0xca <__bad_interrupt>
+  38:	0c 94 65 00 	jmp	0xca	; 0xca <__bad_interrupt>
+  3c:	0c 94 65 00 	jmp	0xca	; 0xca <__bad_interrupt>
+  40:	0c 94 65 00 	jmp	0xca	; 0xca <__bad_interrupt>
+  44:	0c 94 65 00 	jmp	0xca	; 0xca <__bad_interrupt>
+  48:	0c 94 65 00 	jmp	0xca	; 0xca <__bad_interrupt>
+  4c:	0c 94 65 00 	jmp	0xca	; 0xca <__bad_interrupt>
+  50:	0c 94 65 00 	jmp	0xca	; 0xca <__bad_interrupt>
+  54:	0c 94 65 00 	jmp	0xca	; 0xca <__bad_interrupt>
+  58:	0c 94 65 00 	jmp	0xca	; 0xca <__bad_interrupt>
+  5c:	0c 94 27 01 	jmp	0x24e	; 0x24e <__vector_23>
+  60:	0c 94 65 00 	jmp	0xca	; 0xca <__bad_interrupt>
+  64:	0c 94 65 00 	jmp	0xca	; 0xca <__bad_interrupt>
+  68:	0c 94 65 00 	jmp	0xca	; 0xca <__bad_interrupt>
+  6c:	0c 94 65 00 	jmp	0xca	; 0xca <__bad_interrupt>
+  70:	0c 94 65 00 	jmp	0xca	; 0xca <__bad_interrupt>
+  74:	0c 94 51 01 	jmp	0x2a2	; 0x2a2 <__vector_29>
+  78:	0c 94 65 00 	jmp	0xca	; 0xca <__bad_interrupt>
+  7c:	0c 94 65 00 	jmp	0xca	; 0xca <__bad_interrupt>
+  80:	0c 94 65 00 	jmp	0xca	; 0xca <__bad_interrupt>
+  84:	0c 94 65 00 	jmp	0xca	; 0xca <__bad_interrupt>
+  88:	0c 94 65 00 	jmp	0xca	; 0xca <__bad_interrupt>
+  8c:	0c 94 65 00 	jmp	0xca	; 0xca <__bad_interrupt>
+
+00000090 <__ctors_end>:
+  90:	11 24       	eor	r1, r1
+  92:	1f be       	out	0x3f, r1	; 63
+  94:	cf ef       	ldi	r28, 0xFF	; 255
+  96:	cd bf       	out	0x3d, r28	; 61
+  98:	df e3       	ldi	r29, 0x3F	; 63
+  9a:	de bf       	out	0x3e, r29	; 62
+
+0000009c <__do_copy_data>:
+  9c:	18 e2       	ldi	r17, 0x28	; 40
+  9e:	a0 e0       	ldi	r26, 0x00	; 0
+  a0:	b8 e2       	ldi	r27, 0x28	; 40
+  a2:	ee ef       	ldi	r30, 0xFE	; 254
+  a4:	f2 e0       	ldi	r31, 0x02	; 2
+  a6:	02 c0       	rjmp	.+4      	; 0xac <__do_copy_data+0x10>
+  a8:	05 90       	lpm	r0, Z+
+  aa:	0d 92       	st	X+, r0
+  ac:	a2 30       	cpi	r26, 0x02	; 2
+  ae:	b1 07       	cpc	r27, r17
+  b0:	d9 f7       	brne	.-10     	; 0xa8 <__do_copy_data+0xc>
+
+000000b2 <__do_clear_bss>:
+  b2:	28 e2       	ldi	r18, 0x28	; 40
+  b4:	a2 e0       	ldi	r26, 0x02	; 2
+  b6:	b8 e2       	ldi	r27, 0x28	; 40
+  b8:	01 c0       	rjmp	.+2      	; 0xbc <.do_clear_bss_start>
+
+000000ba <.do_clear_bss_loop>:
+  ba:	1d 92       	st	X+, r1
+
+000000bc <.do_clear_bss_start>:
+  bc:	a6 30       	cpi	r26, 0x06	; 6
+  be:	b2 07       	cpc	r27, r18
+  c0:	e1 f7       	brne	.-8      	; 0xba <.do_clear_bss_loop>
+  c2:	0e 94 c8 00 	call	0x190	; 0x190 <main>
+  c6:	0c 94 7d 01 	jmp	0x2fa	; 0x2fa <_exit>
+
+000000ca <__bad_interrupt>:
+  ca:	0c 94 00 00 	jmp	0	; 0x0 <__vectors>
+
+000000ce <TCB0_init>:
+void ADC_init(void);
+
+void TCB0_init (void)
+{
+	/* Load the Compare or Capture register with the timeout value*/
+	TCB0.CCMP = 0x1020;
+  ce:	e0 e8       	ldi	r30, 0x80	; 128
+  d0:	fa e0       	ldi	r31, 0x0A	; 10
+  d2:	80 e2       	ldi	r24, 0x20	; 32
+  d4:	90 e1       	ldi	r25, 0x10	; 16
+  d6:	84 87       	std	Z+12, r24	; 0x0c
+  d8:	95 87       	std	Z+13, r25	; 0x0d
+	TCB0.CNT = 0;
+  da:	12 86       	std	Z+10, r1	; 0x0a
+  dc:	13 86       	std	Z+11, r1	; 0x0b
+	/* Enable TCB3 and Divide CLK_PER by 2 */
+	TCB0.CTRLA |= TCB_ENABLE_bm;
+  de:	80 81       	ld	r24, Z
+  e0:	81 60       	ori	r24, 0x01	; 1
+  e2:	80 83       	st	Z, r24
+	TCB0.CTRLA |= TCB_CLKSEL_CLKDIV2_gc;
+  e4:	80 81       	ld	r24, Z
+  e6:	82 60       	ori	r24, 0x02	; 2
+  e8:	80 83       	st	Z, r24
+	TCB0.INTCTRL |= TCB_CAPT_bm;
+  ea:	85 81       	ldd	r24, Z+5	; 0x05
+  ec:	81 60       	ori	r24, 0x01	; 1
+  ee:	85 83       	std	Z+5, r24	; 0x05
+
+	/* Enable Pin Output and configure TCB in 8-bit PWM mode */
+	TCB0.CTRLB |= TCB_CCMPEN_bm;
+  f0:	81 81       	ldd	r24, Z+1	; 0x01
+  f2:	80 61       	ori	r24, 0x10	; 16
+  f4:	81 83       	std	Z+1, r24	; 0x01
+	TCB0.CTRLB |= TCB_CNTMODE_PWM8_gc;
+  f6:	81 81       	ldd	r24, Z+1	; 0x01
+  f8:	87 60       	ori	r24, 0x07	; 7
+  fa:	81 83       	std	Z+1, r24	; 0x01
+  fc:	08 95       	ret
+
+000000fe <TCB1_init>:
+}
+
+void TCB1_init (void)
+{
+		/* Load the Compare or Capture register with the timeout value*/
+		TCB1.CCMP = 0x1020;
+  fe:	e0 e9       	ldi	r30, 0x90	; 144
+ 100:	fa e0       	ldi	r31, 0x0A	; 10
+ 102:	80 e2       	ldi	r24, 0x20	; 32
+ 104:	90 e1       	ldi	r25, 0x10	; 16
+ 106:	84 87       	std	Z+12, r24	; 0x0c
+ 108:	95 87       	std	Z+13, r25	; 0x0d
+		TCB1.CNT = 0;
+ 10a:	12 86       	std	Z+10, r1	; 0x0a
+ 10c:	13 86       	std	Z+11, r1	; 0x0b
+		/* Enable TCB3 and Divide CLK_PER by 2 */
+		TCB1.CTRLA |= TCB_ENABLE_bm;
+ 10e:	80 81       	ld	r24, Z
+ 110:	81 60       	ori	r24, 0x01	; 1
+ 112:	80 83       	st	Z, r24
+		TCB1.CTRLA |= TCB_CLKSEL_CLKDIV2_gc;
+ 114:	80 81       	ld	r24, Z
+ 116:	82 60       	ori	r24, 0x02	; 2
+ 118:	80 83       	st	Z, r24
+		TCB0.INTCTRL |= TCB_CAPT_bm;
+ 11a:	a0 e8       	ldi	r26, 0x80	; 128
+ 11c:	ba e0       	ldi	r27, 0x0A	; 10
+ 11e:	15 96       	adiw	r26, 0x05	; 5
+ 120:	8c 91       	ld	r24, X
+ 122:	15 97       	sbiw	r26, 0x05	; 5
+ 124:	81 60       	ori	r24, 0x01	; 1
+ 126:	15 96       	adiw	r26, 0x05	; 5
+ 128:	8c 93       	st	X, r24
+
+		/* Enable Pin Output and configure TCB in 8-bit PWM mode */
+		TCB1.CTRLB |= TCB_CCMPEN_bm;
+ 12a:	81 81       	ldd	r24, Z+1	; 0x01
+ 12c:	80 61       	ori	r24, 0x10	; 16
+ 12e:	81 83       	std	Z+1, r24	; 0x01
+		TCB1.CTRLB |= TCB_CNTMODE_PWM8_gc;
+ 130:	81 81       	ldd	r24, Z+1	; 0x01
+ 132:	87 60       	ori	r24, 0x07	; 7
+ 134:	81 83       	std	Z+1, r24	; 0x01
+ 136:	08 95       	ret
+
+00000138 <ADC_init>:
+}
+
+void ADC_init(void){
+	
+	// initialize ADC
+	ADC0.CTRLA |= ADC_RESSEL_10BIT_gc;
+ 138:	e0 e0       	ldi	r30, 0x00	; 0
+ 13a:	f6 e0       	ldi	r31, 0x06	; 6
+ 13c:	80 81       	ld	r24, Z
+ 13e:	80 83       	st	Z, r24
+	ADC0.CTRLA |= ADC_FREERUN_bm;
+ 140:	80 81       	ld	r24, Z
+ 142:	82 60       	ori	r24, 0x02	; 2
+ 144:	80 83       	st	Z, r24
+	ADC0.CTRLA |= ADC_ENABLE_bm;
+ 146:	80 81       	ld	r24, Z
+ 148:	81 60       	ori	r24, 0x01	; 1
+ 14a:	80 83       	st	Z, r24
+	ADC0.MUXPOS |= ADC_MUXPOS_AIN7_gc;
+ 14c:	86 81       	ldd	r24, Z+6	; 0x06
+ 14e:	87 60       	ori	r24, 0x07	; 7
+ 150:	86 83       	std	Z+6, r24	; 0x06
+	
+	ADC0.DBGCTRL |= ADC_DBGRUN_bm;
+ 152:	84 85       	ldd	r24, Z+12	; 0x0c
+ 154:	81 60       	ori	r24, 0x01	; 1
+ 156:	84 87       	std	Z+12, r24	; 0x0c
+	
+	// limit is 5
+	ADC0.WINLT |= 5;
+ 158:	82 89       	ldd	r24, Z+18	; 0x12
+ 15a:	93 89       	ldd	r25, Z+19	; 0x13
+ 15c:	85 60       	ori	r24, 0x05	; 5
+ 15e:	82 8b       	std	Z+18, r24	; 0x12
+ 160:	93 8b       	std	Z+19, r25	; 0x13
+	ADC0.INTCTRL |= ADC_WCMP_bm;
+ 162:	82 85       	ldd	r24, Z+10	; 0x0a
+ 164:	82 60       	ori	r24, 0x02	; 2
+ 166:	82 87       	std	Z+10, r24	; 0x0a
+	ADC0.CTRLE |= ADC_WINCM0_bm;
+ 168:	84 81       	ldd	r24, Z+4	; 0x04
+ 16a:	81 60       	ori	r24, 0x01	; 1
+ 16c:	84 83       	std	Z+4, r24	; 0x04
+	
+	sei();
+ 16e:	78 94       	sei
+	// start conversion
+	ADC0.COMMAND |= ADC_STCONV_bm;
+ 170:	80 85       	ldd	r24, Z+8	; 0x08
+ 172:	81 60       	ori	r24, 0x01	; 1
+ 174:	80 87       	std	Z+8, r24	; 0x08
+	while(stop_adc & first_time){
+ 176:	20 91 00 28 	lds	r18, 0x2800	; 0x802800 <__DATA_REGION_ORIGIN__>
+ 17a:	30 91 01 28 	lds	r19, 0x2801	; 0x802801 <__DATA_REGION_ORIGIN__+0x1>
+ 17e:	80 91 02 28 	lds	r24, 0x2802	; 0x802802 <__data_end>
+ 182:	90 91 03 28 	lds	r25, 0x2803	; 0x802803 <__data_end+0x1>
+ 186:	82 23       	and	r24, r18
+ 188:	93 23       	and	r25, r19
+ 18a:	89 2b       	or	r24, r25
+ 18c:	a1 f7       	brne	.-24     	; 0x176 <ADC_init+0x3e>
+		
+	}
+}
+ 18e:	08 95       	ret
+
+00000190 <main>:
+
+int main(void)
+{
+	
+	// set outputs
+	PORTD.DIR |= PIN0_bm    /* set pin 0 of PORT A as output */
+ 190:	e0 e6       	ldi	r30, 0x60	; 96
+ 192:	f4 e0       	ldi	r31, 0x04	; 4
+ 194:	80 81       	ld	r24, Z
+ 196:	87 60       	ori	r24, 0x07	; 7
+ 198:	80 83       	st	Z, r24
+	| PIN1_bm    /* set pin 1 of PORT A as output */
+	| PIN2_bm;
+	
+	// all off
+	PORTD.OUT |= PIN0_bm;
+ 19a:	84 81       	ldd	r24, Z+4	; 0x04
+ 19c:	81 60       	ori	r24, 0x01	; 1
+ 19e:	84 83       	std	Z+4, r24	; 0x04
+	PORTD.OUT |= PIN1_bm;
+ 1a0:	84 81       	ldd	r24, Z+4	; 0x04
+ 1a2:	82 60       	ori	r24, 0x02	; 2
+ 1a4:	84 83       	std	Z+4, r24	; 0x04
+	PORTD.OUT |= PIN2_bm;
+ 1a6:	84 81       	ldd	r24, Z+4	; 0x04
+ 1a8:	84 60       	ori	r24, 0x04	; 4
+ 1aa:	84 83       	std	Z+4, r24	; 0x04
+	
+	// set switches
+	PORTF.PIN5CTRL |= PORT_PULLUPEN_bm | PORT_ISC_BOTHEDGES_gc;
+ 1ac:	e0 ea       	ldi	r30, 0xA0	; 160
+ 1ae:	f4 e0       	ldi	r31, 0x04	; 4
+ 1b0:	85 89       	ldd	r24, Z+21	; 0x15
+ 1b2:	89 60       	ori	r24, 0x09	; 9
+ 1b4:	85 8b       	std	Z+21, r24	; 0x15
+	PORTF.PIN6CTRL |= PORT_PULLUPEN_bm | PORT_ISC_BOTHEDGES_gc;
+ 1b6:	86 89       	ldd	r24, Z+22	; 0x16
+ 1b8:	89 60       	ori	r24, 0x09	; 9
+ 1ba:	86 8b       	std	Z+22, r24	; 0x16
+	
+	ADC_init();
+ 1bc:	0e 94 9c 00 	call	0x138	; 0x138 <ADC_init>
+	TCB0_init();
+ 1c0:	0e 94 67 00 	call	0xce	; 0xce <TCB0_init>
+	TCB1_init();
+ 1c4:	0e 94 7f 00 	call	0xfe	; 0xfe <TCB1_init>
+	
+	sei();
+ 1c8:	78 94       	sei
+ 1ca:	ff cf       	rjmp	.-2      	; 0x1ca <main+0x3a>
+
+000001cc <__vector_12>:
+	}
+}
+
+
+ISR(TCB0_INT_vect)
+{
+ 1cc:	1f 92       	push	r1
+ 1ce:	0f 92       	push	r0
+ 1d0:	0f b6       	in	r0, 0x3f	; 63
+ 1d2:	0f 92       	push	r0
+ 1d4:	11 24       	eor	r1, r1
+ 1d6:	2f 93       	push	r18
+ 1d8:	8f 93       	push	r24
+ 1da:	9f 93       	push	r25
+ 1dc:	ef 93       	push	r30
+ 1de:	ff 93       	push	r31
+		/* if even, turn on */
+		if (pulses % 2 == 0){
+ 1e0:	80 91 04 28 	lds	r24, 0x2804	; 0x802804 <pulses>
+ 1e4:	90 91 05 28 	lds	r25, 0x2805	; 0x802805 <pulses+0x1>
+ 1e8:	80 fd       	sbrc	r24, 0
+ 1ea:	10 c0       	rjmp	.+32     	; 0x20c <__vector_12+0x40>
+			PORTD.OUTCLR = PIN0_bm;
+ 1ec:	21 e0       	ldi	r18, 0x01	; 1
+ 1ee:	20 93 66 04 	sts	0x0466, r18	; 0x800466 <__TEXT_REGION_LENGTH__+0x7f4466>
+			/* If second timer also completed */
+			if (TCB1.INTFLAGS == 1)
+ 1f2:	20 91 96 0a 	lds	r18, 0x0A96	; 0x800a96 <__TEXT_REGION_LENGTH__+0x7f4a96>
+ 1f6:	21 30       	cpi	r18, 0x01	; 1
+ 1f8:	19 f4       	brne	.+6      	; 0x200 <__vector_12+0x34>
+				PORTD.OUTCLR = PIN1_bm;
+ 1fa:	22 e0       	ldi	r18, 0x02	; 2
+ 1fc:	20 93 66 04 	sts	0x0466, r18	; 0x800466 <__TEXT_REGION_LENGTH__+0x7f4466>
+			pulses++;
+ 200:	01 96       	adiw	r24, 0x01	; 1
+ 202:	80 93 04 28 	sts	0x2804, r24	; 0x802804 <pulses>
+ 206:	90 93 05 28 	sts	0x2805, r25	; 0x802805 <pulses+0x1>
+ 20a:	11 c0       	rjmp	.+34     	; 0x22e <__vector_12+0x62>
+		/* if even, turn on */
+		}else{
+			PORTD.OUT |= PIN0_bm;
+ 20c:	e0 e6       	ldi	r30, 0x60	; 96
+ 20e:	f4 e0       	ldi	r31, 0x04	; 4
+ 210:	24 81       	ldd	r18, Z+4	; 0x04
+ 212:	21 60       	ori	r18, 0x01	; 1
+ 214:	24 83       	std	Z+4, r18	; 0x04
+			/* If second timer also completed */
+			if (TCB1.INTFLAGS == 1)
+ 216:	20 91 96 0a 	lds	r18, 0x0A96	; 0x800a96 <__TEXT_REGION_LENGTH__+0x7f4a96>
+ 21a:	21 30       	cpi	r18, 0x01	; 1
+ 21c:	19 f4       	brne	.+6      	; 0x224 <__vector_12+0x58>
+				PORTD.OUT |= PIN1_bm;
+ 21e:	24 81       	ldd	r18, Z+4	; 0x04
+ 220:	22 60       	ori	r18, 0x02	; 2
+ 222:	24 83       	std	Z+4, r18	; 0x04
+			pulses++;
+ 224:	01 96       	adiw	r24, 0x01	; 1
+ 226:	80 93 04 28 	sts	0x2804, r24	; 0x802804 <pulses>
+ 22a:	90 93 05 28 	sts	0x2805, r25	; 0x802805 <pulses+0x1>
+		}	
+		
+	TCB0.INTFLAGS = TCB_CAPT_bm; /* Clear the interrupt flag */
+ 22e:	81 e0       	ldi	r24, 0x01	; 1
+ 230:	80 93 86 0a 	sts	0x0A86, r24	; 0x800a86 <__TEXT_REGION_LENGTH__+0x7f4a86>
+	PORTB.IN = PIN5_bm; /* Toggle PB5 GPIO */
+ 234:	80 e2       	ldi	r24, 0x20	; 32
+ 236:	80 93 28 04 	sts	0x0428, r24	; 0x800428 <__TEXT_REGION_LENGTH__+0x7f4428>
+}
+ 23a:	ff 91       	pop	r31
+ 23c:	ef 91       	pop	r30
+ 23e:	9f 91       	pop	r25
+ 240:	8f 91       	pop	r24
+ 242:	2f 91       	pop	r18
+ 244:	0f 90       	pop	r0
+ 246:	0f be       	out	0x3f, r0	; 63
+ 248:	0f 90       	pop	r0
+ 24a:	1f 90       	pop	r1
+ 24c:	18 95       	reti
+
+0000024e <__vector_23>:
+
+ISR(ADC0_WCOMP_vect){
+ 24e:	1f 92       	push	r1
+ 250:	0f 92       	push	r0
+ 252:	0f b6       	in	r0, 0x3f	; 63
+ 254:	0f 92       	push	r0
+ 256:	11 24       	eor	r1, r1
+ 258:	8f 93       	push	r24
+ 25a:	9f 93       	push	r25
+ 25c:	ef 93       	push	r30
+ 25e:	ff 93       	push	r31
+	int intflags = ADC0.INTFLAGS;
+ 260:	e0 e0       	ldi	r30, 0x00	; 0
+ 262:	f6 e0       	ldi	r31, 0x06	; 6
+ 264:	83 85       	ldd	r24, Z+11	; 0x0b
+	ADC0.INTFLAGS = intflags;
+ 266:	83 87       	std	Z+11, r24	; 0x0b
+
+	/* enable LED and wait for Right or Left command */
+	PORTD.OUTCLR = PIN2_bm;
+ 268:	84 e0       	ldi	r24, 0x04	; 4
+ 26a:	80 93 66 04 	sts	0x0466, r24	; 0x800466 <__TEXT_REGION_LENGTH__+0x7f4466>
+	#else
+		//round up by default
+		__ticks_dc = (uint32_t)(ceil(fabs(__tmp)));
+	#endif
+
+	__builtin_avr_delay_cycles(__ticks_dc);
+ 26e:	89 ef       	ldi	r24, 0xF9	; 249
+ 270:	90 e0       	ldi	r25, 0x00	; 0
+ 272:	01 97       	sbiw	r24, 0x01	; 1
+ 274:	f1 f7       	brne	.-4      	; 0x272 <__vector_23+0x24>
+ 276:	00 c0       	rjmp	.+0      	; 0x278 <__vector_23+0x2a>
+ 278:	00 00       	nop
+	_delay_ms(1);
+	
+	sei();
+ 27a:	78 94       	sei
+
+	first_time = 1;
+ 27c:	81 e0       	ldi	r24, 0x01	; 1
+ 27e:	90 e0       	ldi	r25, 0x00	; 0
+ 280:	80 93 02 28 	sts	0x2802, r24	; 0x802802 <__data_end>
+ 284:	90 93 03 28 	sts	0x2803, r25	; 0x802803 <__data_end+0x1>
+	stop_adc = 0;
+ 288:	10 92 00 28 	sts	0x2800, r1	; 0x802800 <__DATA_REGION_ORIGIN__>
+ 28c:	10 92 01 28 	sts	0x2801, r1	; 0x802801 <__DATA_REGION_ORIGIN__+0x1>
+}
+ 290:	ff 91       	pop	r31
+ 292:	ef 91       	pop	r30
+ 294:	9f 91       	pop	r25
+ 296:	8f 91       	pop	r24
+ 298:	0f 90       	pop	r0
+ 29a:	0f be       	out	0x3f, r0	; 63
+ 29c:	0f 90       	pop	r0
+ 29e:	1f 90       	pop	r1
+ 2a0:	18 95       	reti
+
+000002a2 <__vector_29>:
+
+
+ISR(PORTF_PORT_vect){
+ 2a2:	1f 92       	push	r1
+ 2a4:	0f 92       	push	r0
+ 2a6:	0f b6       	in	r0, 0x3f	; 63
+ 2a8:	0f 92       	push	r0
+ 2aa:	11 24       	eor	r1, r1
+ 2ac:	8f 93       	push	r24
+ 2ae:	9f 93       	push	r25
+ 2b0:	ef 93       	push	r30
+ 2b2:	ff 93       	push	r31
+	/* Get flags to check for left or right */
+	int intflags = PORTF.INTFLAGS; 
+ 2b4:	80 91 a9 04 	lds	r24, 0x04A9	; 0x8004a9 <__TEXT_REGION_LENGTH__+0x7f44a9>
+	
+	/* If switch5 */
+	int temp = intflags &= ~(00100000);
+	if (temp == 1){
+ 2b8:	81 30       	cpi	r24, 0x01	; 1
+ 2ba:	39 f4       	brne	.+14     	; 0x2ca <__vector_29+0x28>
+		/* Turn right --> double the period of left wheel*/
+		TCB1.CCMP = 0x2040;
+ 2bc:	80 e4       	ldi	r24, 0x40	; 64
+ 2be:	90 e2       	ldi	r25, 0x20	; 32
+ 2c0:	80 93 9c 0a 	sts	0x0A9C, r24	; 0x800a9c <__TEXT_REGION_LENGTH__+0x7f4a9c>
+ 2c4:	90 93 9d 0a 	sts	0x0A9D, r25	; 0x800a9d <__TEXT_REGION_LENGTH__+0x7f4a9d>
+ 2c8:	06 c0       	rjmp	.+12     	; 0x2d6 <__vector_29+0x34>
+	}
+	/* If switch6 */
+	else{
+		/* Turn left --> double the period of right wheel*/
+		TCB0.CCMP = 0x2040;
+ 2ca:	80 e4       	ldi	r24, 0x40	; 64
+ 2cc:	90 e2       	ldi	r25, 0x20	; 32
+ 2ce:	80 93 8c 0a 	sts	0x0A8C, r24	; 0x800a8c <__TEXT_REGION_LENGTH__+0x7f4a8c>
+ 2d2:	90 93 8d 0a 	sts	0x0A8D, r25	; 0x800a8d <__TEXT_REGION_LENGTH__+0x7f4a8d>
+	}
+	
+	stop_adc = 0;
+ 2d6:	10 92 00 28 	sts	0x2800, r1	; 0x802800 <__DATA_REGION_ORIGIN__>
+ 2da:	10 92 01 28 	sts	0x2801, r1	; 0x802801 <__DATA_REGION_ORIGIN__+0x1>
+	
+	/* TURN OFF DECISION LED */
+	PORTD.OUT |= PIN2_bm;
+ 2de:	e0 e6       	ldi	r30, 0x60	; 96
+ 2e0:	f4 e0       	ldi	r31, 0x04	; 4
+ 2e2:	84 81       	ldd	r24, Z+4	; 0x04
+ 2e4:	84 60       	ori	r24, 0x04	; 4
+ 2e6:	84 83       	std	Z+4, r24	; 0x04
+}
+ 2e8:	ff 91       	pop	r31
+ 2ea:	ef 91       	pop	r30
+ 2ec:	9f 91       	pop	r25
+ 2ee:	8f 91       	pop	r24
+ 2f0:	0f 90       	pop	r0
+ 2f2:	0f be       	out	0x3f, r0	; 63
+ 2f4:	0f 90       	pop	r0
+ 2f6:	1f 90       	pop	r1
+ 2f8:	18 95       	reti
+
+000002fa <_exit>:
+ 2fa:	f8 94       	cli
+
+000002fc <__stop_program>:
+ 2fc:	ff cf       	rjmp	.-2      	; 0x2fc <__stop_program>
