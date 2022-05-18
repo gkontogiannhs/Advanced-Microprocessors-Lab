@@ -11,6 +11,9 @@ int is_robbed_timer = 0;
 int pulses = 0;
 
 int main(void){
+	
+	PORTD.DIR = PIN0_bm;
+	PORTD.OUT |= PIN0_bm;
 
 	// set switches
 	PORTF.PIN5CTRL |= PORT_PULLUPEN_bm | PORT_ISC_BOTHEDGES_gc;
