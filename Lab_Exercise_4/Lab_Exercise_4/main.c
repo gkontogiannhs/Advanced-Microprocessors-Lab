@@ -12,9 +12,10 @@ int pulses = 0;
 
 int main(void){
 	
-	PORTD.DIR = PIN0_bm;
+	// led 0 is output
+	PORTD.DIR |= PIN0_bm;
 	PORTD.OUT |= PIN0_bm;
-
+	
 	// set switches
 	PORTF.PIN5CTRL |= PORT_PULLUPEN_bm | PORT_ISC_BOTHEDGES_gc;
 	PORTF.PIN6CTRL |= PORT_PULLUPEN_bm | PORT_ISC_BOTHEDGES_gc;
@@ -30,34 +31,31 @@ int main(void){
 
 void enable_alarm()
 {
+	// make sure pass_input = 0
+	pass_input = 0;
 	sei();
 	while(!pass_input){
-		
+		;
 	}
-	//pass_input = 0;
 	//Timer set up
 	TCA0.SINGLE.CNT = 0; //Clear counter
 	TCA0.SINGLE.CTRLB = 0; //Normal Mode
-	TCA0.SINGLE.CMP0 = 1; //Stop turning when this value is reached
+	TCA0.SINGLE.CMP0 = 5; //Stop turning when this value is reached
 	TCA0.SINGLE.CTRLA = TCA_SINGLE_CLKSEL_DIV1024_gc;
 	TCA0.SINGLE.CTRLA |= 1;
 	TCA0.SINGLE.INTCTRL = TCA_SINGLE_CMP0_bm;
-	cli();
 	
 	// start conversion
 	ADC0.COMMAND |= ADC_STCONV_bm;
-	sei();
+
 	while(!timer_after_pass){
-		// waiting for timer
+		;// waiting for timer
 	}
 	cli();
 }
 
 void ADC_init(void)
 {
-	
-	// led 0 is output
-	PORTD.DIR |= PIN0_bm;
 	
 	// initialize ADC
 	ADC0.CTRLA |= ADC_RESSEL_10BIT_gc;
@@ -77,7 +75,7 @@ void ADC_init(void)
 	ADC0.COMMAND |= ADC_STCONV_bm;
 	// wait till find target
 	while(!is_robbed){
-		
+		;
 	}
 	cli();
 	
@@ -125,16 +123,10 @@ ISR(PORTF_PORT_vect){
 	int sw5 = intflags &= ~(00100000);
 	int sw6 = intflags &= ~(01000000);
 	
-	if(sw6 == 64 && pass_counter == 0){
+	if(sw6 == 64 && pass_counter == 0 || pass_counter == 3){
 		pass_counter++;
 	}
-	else if(sw5 == 32 && pass_counter == 1){
-		pass_counter++;
-	}
-	else if(sw5 == 32 && pass_counter == 2){
-		pass_counter++;
-	}
-	else if(sw6 ==64 && pass_counter == 3){
+	else if(sw5 == 32 && pass_counter == 1 || pass_counter == 2){
 		pass_counter++;
 	}
 	else{
@@ -146,9 +138,15 @@ ISR(PORTF_PORT_vect){
 		siren();
 	}
 	else if(pass_counter == 4){
-		pass_input = 1;
+		// clear pass_counter
+		pass_counter = 0;
 		is_robbed_timer = 1;
+		pass_input = 1;
 	}
+	
+	// clear flags
+	PORTF.INTFLAGS = intflags;
+	
 }
 
 ISR(TCA0_CMP0_vect){
@@ -159,12 +157,12 @@ ISR(TCA0_CMP0_vect){
 	if(pass_input == 1){
 		//Disable Timer
 		TCA0.SINGLE.CTRLA = 0;
-		// turn on flag
+		// turn on flag to flag time to leave home is over
 		timer_after_pass = 1;
 		// clear correct password flag
 		pass_input = 0;
-		
-		}else if(pass_input == 0){
+	}
+	else if(pass_input == 0){
 		siren();
 	}
 }
@@ -175,11 +173,12 @@ ISR(ADC0_WCOMP_vect){
 	int intflags = ADC0.INTFLAGS;
 	ADC0.INTFLAGS = intflags;
 
-	/* enable LED and wait for Right or Left command */
+	// set is robbed variable = 1
 	is_robbed = 1;
+	
 	is_robbed_timer = 0;
-	pass_counter = 0;
-	// turn led0 on
+	
+	// turn LED0 on
 	_delay_ms(1);
 	PORTD.OUTCLR = PIN0_bm;
 }
@@ -191,17 +190,15 @@ ISR(TCB0_INT_vect)
 	if (pass_counter != 4){
 		/* if even, turn on */
 		if (pulses % 2 == 0)
-		PORTD.OUTCLR = PIN0_bm;
+			PORTD.OUTCLR = PIN0_bm;
 		else
-		PORTD.OUT |= PIN0_bm;
-
-		pulses++;
-		
+			PORTD.OUT |= PIN0_bm;
+		pulses++;	
 	}
 	else{
 		// disable pwm
 		TCB0.CTRLA = 0;
 	}
 	TCB0.INTFLAGS = TCB_CAPT_bm; /* Clear the interrupt flag */
-	PORTB.IN = PIN5_bm; /* Toggle PB5 GPIO */
+	PORTB.IN = PIN5_bm;
 }
